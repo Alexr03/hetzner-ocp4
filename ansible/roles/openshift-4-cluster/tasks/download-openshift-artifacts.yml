@@ -19,7 +19,7 @@
 #    - "{{ tmp_openshift_client_download_url }}"
     - "{{ helm_cli_location }}"
     
-  debug:
+- debug:
     var: coreos_image
 
 - name: check if coreos image already downloaded and get checksum
