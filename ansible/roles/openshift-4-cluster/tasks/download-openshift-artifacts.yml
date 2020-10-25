@@ -2,8 +2,10 @@
 
 - name: Build openshift download urls
   set_fact:
-    tmp_openshift_install_download_url: "{{ openshift_location }}/openshift-install-linux-{{ openshift_version }}.tar.gz"
-    tmp_openshift_client_download_url: "{{ openshift_location }}/openshift-client-linux-{{ openshift_version }}.tar.gz"
+#    tmp_openshift_install_download_url: "{{ openshift_location }}/openshift-install-linux-{{ openshift_version }}.tar.gz"
+#    tmp_openshift_client_download_url: "{{ openshift_location }}/openshift-client-linux-{{ openshift_version }}.tar.gz"
+    tmp_openshift_install_download_url: https://github.com/openshift/okd/releases/download/4.5.0-0.okd-2020-10-15-235428/openshift-install-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz
+    tmp_openshift_client_download_url: https://github.com/openshift/okd/releases/download/4.5.0-0.okd-2020-10-15-235428/openshift-client-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz
 
 - name: Check download urls
   uri:
@@ -13,9 +15,12 @@
   with_items:
     - "{{ coreos_download_url }}"
     - "{{ coreos_csum_url }}"
-    - "{{ tmp_openshift_install_download_url }}"
-    - "{{ tmp_openshift_client_download_url }}"
+#    - "{{ tmp_openshift_install_download_url }}"
+#    - "{{ tmp_openshift_client_download_url }}"
     - "{{ helm_cli_location }}"
+    
+  debug:
+    var: coreos_image
 
 - name: check if coreos image already downloaded and get checksum
   stat:
